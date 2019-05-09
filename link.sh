@@ -1,1 +1,1 @@
-ln -s .vimrc ~/.vimrc
+ln -s ~/Code/code_profile/.vimrc ~/.vimrc
