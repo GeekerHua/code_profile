@@ -2,7 +2,7 @@
 
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'              "" 左侧目录树
-Plug 'Valloric/MatchTagAlways'          "" 自动查找标签
+""Plug 'Valloric/MatchTagAlways'          "" 自动查找标签,需要vim支持python，还需要重新编译，太麻烦
 ""Plugin 'Valloric/YouCompleteMe'
 Plug 'docunext/closetag.vim'            "" 自动关闭标签
 Plug 'vim-airline/vim-airline'          "" 漂亮的状态栏
@@ -40,6 +40,7 @@ set list                "" 显示行尾多余的空格
 set wildmenu            "" 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
 set wildmode=longest:list,full
 set hlsearch
+set t_Co=256            "" 支持256色显示
 
 " 显示中文帮助
 if version >= 603
@@ -50,7 +51,7 @@ endif
 if has("autocmd")
     filetype on
     autocmd FileType ruby setlocal ts=2 sts=2 sw=2 et
-    autocmd FileType javascript setlocal ts=5 sts=4 sw=4 noet 
+    autocmd FileType javascript setlocal ts=5 sts=4 sw=4 noet
 endif
 
 

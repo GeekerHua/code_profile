@@ -1,0 +1,20 @@
+#cloud-config
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4ye1EIc9c/njPcWLQoh5sgc9midUoUVfB6ljJs359spGetjk8OcdwWigaEgwyrUePp3p3PuFQ4mMpJdA7RWO5+aN/ccFeVsOmyBDIND1vk+qND0F7NXA/ZyP9jCGQdVkUc/I2FxvzzTaUhfB4gUDxS1AbwY3F9ZSHbPQVRLECumfsOXJyb5bHkGw1fsCwe9zpEgti8hzvQgchNqPUvNR6VN71M4tb6N4beLxNjYlZt8jIdi9AzHR8O/xWL9EPYIwXuhOBh0UqfCNjs7/VpAh5d/wyav/oTfG7J0a5dQins7FLmjZLxIyMrQ1m/Uax2UTfzu9bRE0al3pOJJEwDY6KJbbVJfIcRR2WVb2+5bTRE6J/cGD0X+YBffbdQU9h9xd/OWwjL29lvntnyNKP6SrzAywhaHVkQwcNkGrOcoMiinRvKmBYpUyRXrGaNfVoUlKAGVKXoA0TDL5jweXOhvrQWqaBNT5Xov/LaZdUKHlsQ7QpQxpKmY8NeMjkB4csRtzlRPyQ8ws2hMK30SmRQ0iV/oKFu6BUFEbXuHUtjpo5GtaN3/Gn35IkC46q2BlGAbAqyg45hY4mHkUwx7vngJMn+pYfv6TLU98lwphJFfeFbEUhDsvffyW1sgKAHtlzBn5FZKFi/pWYWH+Y3otAnYnX+fgY2tFJBaePknJeWRMABw== geekerhua@sina.com
+hostname: pi
+
+#cloud-config
+rancher:
+  # docker:
+  #   registry_mirror: "http://f1361db2.m.daocloud.io"
+  network:
+    interfaces:
+      wlan0:
+        wifi_network: network1
+      wifi_networks:
+        network1:
+          ssid: ishangzu401a
+          psk: ishangzu8888
+          scan_ssid: 1
+          address: 192.168.0.123/24
+          gateway: 192.168.0.1
