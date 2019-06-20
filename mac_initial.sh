@@ -5,7 +5,7 @@ init_ruby(){
 }
 
 init_brew() {
-    brew install python2 python3 nvm you-get wget htop docker mycli ffmpeg ccat autojump tig tmux mwget
+    brew install python2 python3 lua nvm you-get wget htop docker mycli ffmpeg ccat autojump tig tmux mwget bash-completion
     echo 'export HOMEBREW_NO_AUTO_UPDATE=true' >> ~/.zshrc; source ~/.zshrc
     brew tap homebrew/cask
     brew cask install postman ShadowsocksX-NG
