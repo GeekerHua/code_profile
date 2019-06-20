@@ -92,14 +92,39 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# pip zsh completion start
+function _pip_completion() {
+    local words cword
+    read -Ac words
+    read -cn cword
+    reply=($(COMP_WORDS="$words[*]" \
+        COMP_CWORD=$((cword - 1)) \
+        PIP_AUTO_COMPLETE=1 $words[1]))
+}
+# pip zsh completion end
+
 #export NVM_DIR="$HOME/.nvm"
-#  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh" --no-use # This loads nvm
+#  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh" # --no-use This loads nvm
 #export PATH=$HOME/.nvm/versions/node/v12.0.0/bin/:$PATH
 #  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # this loads nvm bash_completion
-eval $(thefuck --alias)
-eval "$(lua ~/Code/tools/z.lua//z.lua  --init zsh)"
-export HOMEBREW_NO_AUTO_UPDATE=true
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -F /usr/local/bin/aliyun aliyun     # open aliyun CLI auto complete
+# The plugin manager for zsh.
+source /usr/local/share/antigen/antigen.zsh
+
+eval $(thefuck --alias)
+eval "$(lua ~/Code/tools/z.lua/z.lua --init zsh)"
+alias lip='ifconfig en0 | grep broadcast | awk "{print \$2}" '
+alias wip='curl ip.cip.cc'
+alias psp='ps -ajx | grep '
+alias bs='brew services'
 alias tnew="tmux new -s "
+
+export HOMEBREW_NO_AUTO_UPDATE=true
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES # 支持python 多线程调试
+export PATH="/usr/local/opt/sqlite/bin:$PATH"  # 使用sqlite
+export PATH="/usr/local/opt/openssl/bin:$PATH" # 使用brew安装的openssl替换掉系统自带的
+
+compctl -K _pip_completion pip
+complete -o nospace -F /usr/local/bin/aliyun aliyun # open aliyun CLI auto complete
+autoload -U +X bashcompinit && bashcompinit
