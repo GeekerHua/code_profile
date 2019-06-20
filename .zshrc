@@ -8,7 +8,13 @@ export ZSH=$HOME/.oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
+# ZSH_THEME=""
+# autoload -U promptinit; promptinit
+# prompt pure
+
+ZSH_THEME="ys"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -62,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux)
+plugins=(git tmux extract pip zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,16 +109,19 @@ function _pip_completion() {
 }
 # pip zsh completion end
 
-# The plugin manager for zsh.
-source /usr/local/share/antigen/antigen.zsh
-
 eval $(thefuck --alias)
 eval "$(lua ~/Code/tools/z.lua/z.lua --init zsh)"
 alias lip='ifconfig en0 | grep broadcast | awk "{print \$2}" '
 alias wip='curl ip.cip.cc'
 alias psp='ps -ajx | grep '
 alias bs='brew services'
-alias tnew="tmux new -s "
+alias j='z'
+alias tailf='tail -f '
+
+#如果连续输入的命令相同，历史纪录中只保留一个
+setopt HIST_IGNORE_DUPS
+
+bindkey 'C-e' autosuggest-accept # 使用Ctrl + e 替换掉→
 
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
