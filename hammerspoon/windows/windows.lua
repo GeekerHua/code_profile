@@ -9,13 +9,6 @@ hotkey.bind(hyper, "h", function()
   hs.alert("Hello World")
 end)
 
--- 通知中心弹出Hello Hammerspoon!
-hotkey.bind(hyper, "t", function()
-  hs.notify.new({title="Hammerspoon", informativeText="Hello Hammerspoon!"}):send()
-  -- hs.alert.show("Hello World!")
-end)
-
-
 -- 当前窗口全屏
 hs.hotkey.bind(hyper, 'up', function()
     hs.grid.maximizeWindow()

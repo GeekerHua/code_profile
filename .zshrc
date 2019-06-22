@@ -132,3 +132,5 @@ export PATH="/usr/local/opt/openssl/bin:$PATH" # 使用brew安装的openssl替�
 compctl -K _pip_completion pip
 # complete -o nospace -F /usr/local/bin/aliyun aliyun # open aliyun CLI auto complete
 autoload -U +X bashcompinit && bashcompinit
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
