@@ -80,6 +80,7 @@ obj.colors = {
    Spanish = {col.red, col.yellow, col.red},
    German = {col.black, col.red, col.yellow},
    ["Pinyin - Simplified"] = {col.red},
+   ["Shuangpin - Simplified"] = {col.red, col.green },
 }
 
 --- MenubarFlag.timerFreq
