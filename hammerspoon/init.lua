@@ -1,5 +1,5 @@
-require "weather.weather"
-require "windows.windows"
+require "modules.weather"
+require "modules.windows"
 
 hs.loadSpoon("CircleClock")
 hs.loadSpoon("BingDaily")
