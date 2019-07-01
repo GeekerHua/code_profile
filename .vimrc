@@ -8,6 +8,9 @@ Plug 'docunext/closetag.vim'            "" 自动关闭标签
 Plug 'vim-airline/vim-airline'          "" 漂亮的状态栏
 Plug 'ryanoasis/vim-devicons'           "" 文件类型icon
 Plug 'ryanoasis/vim-devicons'           "" 色值增加对应色背景
+Plug 'ybian/smartim'                    "" 自动切换输入法
+Plug 'Valloric/YouCompleteMe',{'do':'python3 install.py --all'}
+
 ""Plug 'itchyny/lightline.vim'
 call plug#end()
 
@@ -34,13 +37,15 @@ set hlsearch            "" 高亮显示搜索匹配结果
 set ignorecase          "" 搜索忽略大小写
 set smartcase           "" 如果同时打开了ignorecase，那么对于只有一个大写字母的搜索词，将大小写敏感；其他情况都是大小写不敏感。比如，搜索Test时，将不匹配test；搜索test时，将匹配Test。
 set noerrorbells        "" 出错时不发生响声
-set visualbell          "" 出错时闪屏
+"" set visualbell          "" 出错时闪屏
 set listchars=tab:»■,trail:■
 set list                "" 显示行尾多余的空格
 set wildmenu            "" 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
 set wildmode=longest:list,full
 set hlsearch
 set t_Co=256            "" 支持256色显示
+
+let g:smartim_default =  'com.apple.keylayout.ABC'         "" 默认英文输入法
 
 " 显示中文帮助
 if version >= 603

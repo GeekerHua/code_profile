@@ -5,7 +5,9 @@ init_ruby() {
 }
 
 init_brew() {
-    brew install python2 python3 lua nvm you-get wget htop docker mycli ffmpeg bat autojump tig tmux mwget bash-completion fzf
+    xcode-select --install
+    brew install python2 python3 lua nvm you-get wget htop docker mycli ffmpeg
+    bat tig tmux mwget bash-completion fzf mvim cmake
     echo 'export HOMEBREW_NO_AUTO_UPDATE=true' >>~/.zshrc
     source ~/.zshrc
     brew tap homebrew/cask
@@ -22,10 +24,14 @@ init_font() {
     # 安装如诗般的FiraCode字体
     brew tap homebrew/cask-fonts
     brew cask install font-fira-code
+    brew cask install font-hack-nerd-font
 }
 
 init_vim() {
-    brew install macvim --head --override-system-vim
+    # brew install macvim
+    # 安装im-select，用来自动切换vscode输入法
+    curl -Ls https://raw.githubusercontent.com/daipeihust/im-select/master/install_mac.sh | sh
+    curl -sLf https://spacevim.org/cn/install.sh | bash
 }
 
 init_zsh() {

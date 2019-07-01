@@ -2,7 +2,7 @@ require "modules.weather"
 require "modules.windows"
 
 hs.loadSpoon("CircleClock")
-hs.loadSpoon("BingDaily")
+-- hs.loadSpoon("BingDaily")
 hs.loadSpoon("Calendar")
 hs.loadSpoon("MenubarFlag")
 -- hs.loadSpoon("HCalendar")

@@ -117,6 +117,10 @@ alias psp='ps -ajx | grep '
 alias bs='brew services'
 alias j='z'
 alias tailf='tail -f '
+alias ls='lsd'
+alias la='ls -lah'
+alias lt='ls --tree'
+alias vim='mvim -v'
 
 #如果连续输入的命令相同，历史纪录中只保留一个
 setopt HIST_IGNORE_DUPS
