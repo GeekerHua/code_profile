@@ -19,7 +19,7 @@ init_brew() {
     cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
     git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 
-    brew install python2 python3 lua nvm you-get wget htop docker mycli ffmpeg bat tig tmux bash-completion fzf cmake mvim
+    brew install lsd wget python2 python3 lua nvm you-get htop docker mycli ffmpeg bat tig tmux bash-completion fzf cmake mvim
     echo 'export HOMEBREW_NO_AUTO_UPDATE=true' >>~/.zshrc
     source ~/.zshrc
     brew cask install postman ShadowsocksX-NG
