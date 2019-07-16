@@ -11,15 +11,17 @@ init_brew() {
     sed -i /github\.com/Homebrew/brew/mirrors\.ustc\.edu\.cn/brew\.git/g
     /usr/bin/ruby ./brew_install
 
+    brew tap homebrew/cask
     cd "$(brew --repo)"
     git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
     cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
     git remote set-url origin git://mirrors.ustc.edu.cn/homebrew-core.git
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 
     brew install python2 python3 lua nvm you-get wget htop docker mycli ffmpeg bat tig tmux bash-completion fzf cmake mvim
     echo 'export HOMEBREW_NO_AUTO_UPDATE=true' >>~/.zshrc
     source ~/.zshrc
-    brew tap homebrew/cask
     brew cask install postman ShadowsocksX-NG
 }
 
