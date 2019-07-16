@@ -6,8 +6,17 @@ init_ruby() {
 
 init_brew() {
     xcode-select --install
-    brew install python2 python3 lua nvm you-get wget htop docker mycli ffmpeg
-    bat tig tmux mwget bash-completion fzf mvim cmake
+    # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install >> brew_install
+    sed -i /github\.com/Homebrew/brew/mirrors\.ustc\.edu\.cn/brew\.git/g
+    /usr/bin/ruby ./brew_install
+
+    cd "$(brew --repo)"
+    git remote set-url origin git://mirrors.ustc.edu.cn/brew.git
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin git://mirrors.ustc.edu.cn/homebrew-core.git
+
+    brew install python2 python3 lua nvm you-get wget htop docker mycli ffmpeg bat tig tmux bash-completion fzf cmake mvim
     echo 'export HOMEBREW_NO_AUTO_UPDATE=true' >>~/.zshrc
     source ~/.zshrc
     brew tap homebrew/cask
