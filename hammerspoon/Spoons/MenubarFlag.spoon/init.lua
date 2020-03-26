@@ -80,8 +80,9 @@ obj.colors = {
    Spanish = {col.red, col.yellow, col.red},
    German = {col.black, col.red, col.yellow},
    ["Pinyin - Simplified"] = {col.red},
-   ["Shuangpin - Simplified"] = {col.red, col.green },
+   ["Shuangpin - Simplified"] = {col.yellow},
    ["搜狗拼音"] = {col.green, col.red },
+   ["Squirrel"] = {col.green },
 }
 
 --- MenubarFlag.timerFreq
@@ -223,4 +224,3 @@ function obj:stop()
 end
 
 return obj
-

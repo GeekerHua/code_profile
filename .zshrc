@@ -68,7 +68,7 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux extract pip zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git tmux extract pip zsh-autosuggestions zsh-syntax-highlighting kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,6 +121,11 @@ alias ls='lsd'
 alias la='ls -lah'
 alias lt='ls --tree'
 alias vim='mvim -v'
+alias gh='githug'
+alias pis3='pip3 install -i https://mirrors.aliyun.com/pypi/simple/'
+alias pis='pip install -i https://mirrors.aliyun.com/pypi/simple/'
+alias py3='python3'
+alias py2='python'
 
 #如果连续输入的命令相同，历史纪录中只保留一个
 setopt HIST_IGNORE_DUPS
