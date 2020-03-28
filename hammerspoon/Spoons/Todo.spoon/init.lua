@@ -16,57 +16,10 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 
 obj.watch_paths = { "/Users/geekerhua/Documents/Alfred/todos/todo.txt" }
 
-obj.calw = 260
+obj.calw = 300
 obj.calh = 400
 
-local function updateCalCanvas()
-    local titlestr = os.date("%B %Y")
-    obj.canvas[2].text = titlestr
-    local current_year = os.date("%Y")
-    local current_month = os.date("%m")
-    local current_day = os.date("%d")
-    local firstday_of_nextmonth = os.time{year=current_year, month=current_month+1, day=1}
-    local maxday_of_currentmonth = os.date("*t", firstday_of_nextmonth-24*60*60).day
-    local weekday_of_firstday = os.date("*t", os.time{year=current_year, month=current_month, day=1}).wday
-    local needed_rownum = math.ceil((weekday_of_firstday+maxday_of_currentmonth-1)/7)
-
-    for i=1,needed_rownum do
-        for k=1,7 do
-            local caltable_idx = 7*(i-1)+k
-            local pushbacked_value = caltable_idx-weekday_of_firstday + 2
-            if pushbacked_value <= 0 or pushbacked_value > maxday_of_currentmonth then
-                obj.canvas[9+caltable_idx].text = ""
-            else
-                obj.canvas[9+caltable_idx].text = pushbacked_value
-            end
-            if pushbacked_value == math.tointeger(current_day) then
-                obj.canvas[58].frame.x = tostring((10+(obj.calw-20)/8*k)/obj.calw)
-                obj.canvas[58].frame.y = tostring((10+(obj.calh-20)/8*(i+1))/obj.calh)
-            end
-        end
-    end
-    -- update yearweek
-    local yearweek_of_firstday = hs.execute("date -v1d +'%W'")
-    for i=1,6 do
-        local yearweek_rowvalue = math.tointeger(yearweek_of_firstday)+i-1
-        obj.canvas[51+i].text = yearweek_rowvalue
-        if i > needed_rownum then
-            obj.canvas[51+i].text = ""
-        end
-    end
-    -- trim the canvas
-    obj.canvas:size({
-        w = obj.calw,
-        h = 20+(obj.calh-20)/8*(needed_rownum+2)
-    })
-end
-
 function obj:start()
-    print "kkkk"
-    return self
-end
-
-function obj:init()
     local finishedcolor = {red=1, blue=1, green=1, alpha=0.3}
     local calcolor = {red=235/255, blue=235/255, green=235/255}
     local calbgcolor = {red=0, blue=0, green=0, alpha=0.3}
@@ -132,7 +85,16 @@ function obj:init()
             }
         }
     end
-    return obj
+    return self
+end
+
+function obj:init()
+    self.start()
+    self.watchers = {}
+    for _,dir in pairs(self.watch_paths) do
+        self.watchers[dir] = hs.pathwatcher.new(dir, hs.reload):start()
+    end
+    return self
 end
 
 return obj
