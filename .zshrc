@@ -143,3 +143,5 @@ compctl -K _pip_completion pip
 autoload -U +X bashcompinit && bashcompinit
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
