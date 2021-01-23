@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -13,8 +20,8 @@ export ZSH=$HOME/.oh-my-zsh
 # autoload -U promptinit; promptinit
 # prompt pure
 
-ZSH_THEME="ys"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="ys"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -109,8 +116,7 @@ function _pip_completion() {
 }
 # pip zsh completion end
 
-eval $(thefuck --alias)
-eval "$(lua ~/Code/tools/z.lua/z.lua --init zsh)"
+eval "$(lua ~/code/tools/z.lua/z.lua --init zsh)"
 alias lip='ifconfig en0 | grep broadcast | awk "{print \$2}" '
 alias wip='curl ip.cip.cc'
 alias psp='ps -ajx | grep '
@@ -120,7 +126,7 @@ alias tailf='tail -f '
 alias ls='lsd'
 alias la='ls -lah'
 alias lt='ls --tree'
-alias vim='mvim -v'
+# alias vim='mvim -v'
 alias gh='githug'
 alias pis3='pip3 install -i https://mirrors.aliyun.com/pypi/simple/'
 alias pis='pip install -i https://mirrors.aliyun.com/pypi/simple/'
@@ -138,6 +144,11 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES # 支持python 多线程调试
 export PATH="/usr/local/opt/sqlite/bin:$PATH"  # 使用sqlite
 export PATH="/usr/local/opt/openssl/bin:$PATH" # 使用brew安装的openssl替换掉系统自带的
 
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 compctl -K _pip_completion pip
 # complete -o nospace -F /usr/local/bin/aliyun aliyun # open aliyun CLI auto complete
 autoload -U +X bashcompinit && bashcompinit
@@ -145,3 +156,7 @@ autoload -U +X bashcompinit && bashcompinit
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

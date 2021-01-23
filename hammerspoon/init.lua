@@ -3,7 +3,7 @@
 
 -- hs.loadSpoon("CircleClock")
 hs.loadSpoon("Calendar")
-hs.loadSpoon("Todo")
+-- hs.loadSpoon("Todo")
 hs.loadSpoon("SpoonInstall")
 hs.loadSpoon("BingDaily")
 -- hs.loadSpoon("HCalendar")
