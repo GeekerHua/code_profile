@@ -3,7 +3,11 @@ init_ruby() {
     gem sources --add https://gems.ruby-china.com
     gem sources -r https://rubygems.org/
 }
+init_brew_m1() {
+    xcode-select --install
+    /bin/bash -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install.sh)"
 
+}
 init_brew() {
     xcode-select --install
     # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -23,7 +27,6 @@ init_brew() {
 
 
     brew install lsd wget python2 python3 lua nvm you-get htop mycli ffmpeg bat tig tmux bash-completion fzf cmake pyenv
-    echo 'export HOMEBREW_NO_AUTO_UPDATE=true' >>~/.zshrc
     source ~/.zshrc
     brew install  visual-studio-code google-chrome
 }
@@ -38,20 +41,32 @@ init_hosts() {
 }
 
 init_python() {
+    # M1
+    PYTHON_CONFIGURE_OPTS="--enable-framework"
+    # M1 python2
+    LDFLAGS="-L$(brew --prefix openssl)/lib"
+    CPPFLAGS="-I$(brew --prefix openssl)/include"
+    # M1 python3.7+
+    pyenv install 3.9.5
+
+    # intel
     v=2.7.18;wget https://npm.taobao.org/mirrors/python/$v/Python-$v.tar.xz -P ~/.pyenv/cache/;PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install $v
     v=3.8.2;wget https://npm.taobao.org/mirrors/python/$v/Python-$v.tar.xz -P ~/.pyenv/cache/;PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install $v
     # 以下方法适用于mac OS 11+
-    PYTHON_CONFIGURE_OPTS="--enable-framework";CFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix bzip2)/include -I$(brew --prefix readline)/include -I$(xcrun --show-sdk-path)/usr/include" LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix readline)/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" pyenv install --patch 3.8.2 < <(curl -sSL https://github.com/python/cpython/commit/8ea6353.patch\?full_index\=1)
+    PYTHON_CONFIGURE_OPTS="--enable-framework";
+    CFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix bzip2)/include -I$(brew --prefix readline)/include -I$(xcrun --show-sdk-path)/usr/include"
+    LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix readline)/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib"
+    pyenv install --patch 3.8.2 < <(curl -sSL https://github.com/python/cpython/commit/8ea6353.patch\?full_index\=1)
     pyenv global 2.7.18 3.8.2
     pip isntall ipython
     pip3 isntall ipython
+
 }
 
 init_font() {
     # 安装如诗般的FiraCode字体
     brew tap homebrew/cask-fonts
-    brew cask install font-fira-code
-    brew cask install font-hack-nerd-font
+    brew install cask font-fira-code font-hack-nerd-font
 }
 
 init_vim() {
@@ -69,6 +84,8 @@ init_zsh() {
     git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     git clone --depth=1 git@github.com:skywind3000/z.lua.git ~/code/tools/z.lua
+    git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
 }
 
 mac_setting() {

@@ -132,6 +132,7 @@ alias pis3='pip3 install -i https://mirrors.aliyun.com/pypi/simple/'
 alias pis='pip install -i https://mirrors.aliyun.com/pypi/simple/'
 alias py3='python3'
 alias py2='python'
+alias ipyenv="arch -x86_64 pyenv"
 
 #如果连续输入的命令相同，历史纪录中只保留一个
 setopt HIST_IGNORE_DUPS
@@ -141,13 +142,17 @@ bindkey 'C-e' autosuggest-accept # 使用Ctrl + e 替换掉→
 export HOMEBREW_NO_AUTO_UPDATE=true
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES # 支持python 多线程调试
+export PATH="/opt/homebrew/bin:$PATH"  # brew 目录
 export PATH="/usr/local/opt/sqlite/bin:$PATH"  # 使用sqlite
 export PATH="/usr/local/opt/openssl/bin:$PATH" # 使用brew安装的openssl替换掉系统自带的
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+export CFLAGS="-I$(brew --prefix openssl)/include"
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
 compctl -K _pip_completion pip
 # complete -o nospace -F /usr/local/bin/aliyun aliyun # open aliyun CLI auto complete
